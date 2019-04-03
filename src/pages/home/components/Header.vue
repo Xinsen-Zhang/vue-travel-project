@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="stylus" scope>
-  @import '~@/assets/style/variables.styl'
+  @import '~styles/variables.styl'
   .header
     display: flex
     line-height: .86rem
