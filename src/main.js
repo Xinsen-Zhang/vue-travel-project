@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import '@/assets/style/reset.css'
 import '@/assets/style/border.css'
+import '@/assets/style/iconfont.css'
 
 // 300ms click delay
 import fastClick from 'fastclick'
