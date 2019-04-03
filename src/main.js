@@ -6,6 +6,10 @@ import router from './router'
 import '@/assets/style/normalize.css'
 import '@/assets/style/border.css'
 
+// 300ms click delay
+import fastClick from 'fastclick'
+fastClick.attach(document.body)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
