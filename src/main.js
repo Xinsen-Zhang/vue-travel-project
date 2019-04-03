@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import '@/assets/style/normalize.css'
+import '@/assets/style/reset.css'
 import '@/assets/style/border.css'
 
 // 300ms click delay
