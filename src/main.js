@@ -9,9 +9,15 @@ import 'styles/iconfont.css'
 
 // 300ms click delay
 import fastClick from 'fastclick'
-fastClick.attach(document.body)
 
+// awesome-swiper
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// require styles
+import 'swiper/dist/css/swiper.css'
+
+fastClick.attach(document.body)
 Vue.config.productionTip = false
+Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
 new Vue({
