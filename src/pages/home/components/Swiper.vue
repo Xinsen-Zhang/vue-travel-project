@@ -32,8 +32,18 @@ export default {
         },
         {
           id: '002',
-          imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/6b6fd3d9e40b749ac1d189ce80ebb3cc.jpg_750x200_9616e2e7.jpg',
+          imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/87a224d0349d94a11e97f31aa1aba4f5.jpg_750x200_1f78af87.jpg',
           alt: '2号轮播图'
+        },
+        {
+          id: '003',
+          imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/26c9b54e3e02d3724f614883d77a62c6.jpg_750x200_57aa8efa.jpg',
+          alt: '3号轮播图'
+        },
+        {
+          id: '004',
+          imgUrl: 'http://mp-piao-admincp.qunarzz.com/mp_piao_admin_mp_piao_admin/admin/20193/c161c77f88748519c1f507423c1cdc73.jpg_750x200_6842d08c.jpg',
+          alt: '4号轮播图'
         }
       ]
     }
