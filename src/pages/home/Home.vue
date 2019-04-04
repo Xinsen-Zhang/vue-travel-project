@@ -5,6 +5,7 @@
     <home-icons :list="iconList"></home-icons>
     <home-hottest :list="hottestList"></home-hottest>
     <home-recommend :list="recList"></home-recommend>
+    <home-week :list="weekList"></home-week>
   </div>
 </template>
 
@@ -15,7 +16,8 @@ import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeHottest from './components/Hottest'
-import HomeRecommend from './components/Recommend.vue'
+import HomeRecommend from './components/Recommend'
+import HomeWeek from './components/Week'
 export default {
   name: 'Home',
   data () {
@@ -24,7 +26,8 @@ export default {
       swipeList: [],
       iconList: [],
       hottestList: [],
-      recList: []
+      recList: [],
+      weekList: []
     }
   },
   components: {
@@ -32,7 +35,8 @@ export default {
     HomeSwiper,
     HomeIcons,
     HomeHottest,
-    HomeRecommend
+    HomeRecommend,
+    HomeWeek
   },
   mounted () {
     this.getHomeData()
@@ -45,6 +49,7 @@ export default {
       this.iconList = data.iconList
       this.hottestList = data.hottestList
       this.recList = data.recList
+      this.weekList = data.weekList
     },
     getHomeData () {
       axios.get('/api1/home').then(this.handleResponse)
