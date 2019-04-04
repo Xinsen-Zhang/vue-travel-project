@@ -4,7 +4,7 @@
     <home-swiper :list="swipeList"></home-swiper>
     <home-icons :list="iconList"></home-icons>
     <home-hottest :list="hottestList"></home-hottest>
-    <home-recommend></home-recommend>
+    <home-recommend :list="recList"></home-recommend>
   </div>
 </template>
 
@@ -23,7 +23,8 @@ export default {
       city: '',
       swipeList: [],
       iconList: [],
-      hottestList: []
+      hottestList: [],
+      recList: []
     }
   },
   components: {
@@ -43,6 +44,7 @@ export default {
       this.swipeList = data.swipeList
       this.iconList = data.iconList
       this.hottestList = data.hottestList
+      this.recList = data.recList
     },
     getHomeData () {
       axios.get('/api1/home').then(this.handleResponse)
