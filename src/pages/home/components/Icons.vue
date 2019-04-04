@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       swiperOption: {
-        // pagination: '.swiper-pagination'
+        pagination: '.swiper-pagination'
       }
     }
   },
@@ -51,8 +51,11 @@ export default {
     width: 100%
     height: 0
     padding-bottom: 50%
+    margin-bottom .5rem
     // overflow: hidden
     // background-color: green
+  .icons >>> .swiper-pagination-bullet-active
+    background rgba(0,175,190,.8) !important
   .icons
     background #fff
     .icon

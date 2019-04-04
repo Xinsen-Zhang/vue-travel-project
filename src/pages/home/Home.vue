@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     handleResponse (res) {
-      console.log(res)
       var data = res.data
       this.city = data.city
       this.swipeList = data.swipeList
@@ -44,7 +43,6 @@ export default {
     },
     getHomeData () {
       axios.get('/api1/home').then(this.handleResponse)
-      // console.log(axios.get)
     }
   }
 }
