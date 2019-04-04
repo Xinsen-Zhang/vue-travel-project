@@ -10,7 +10,7 @@ def get_home_data():
         swipeList = re.findall(r'swipe-img.*?src=\'(.*?)\'', text) 
         iconList = re.findall(r'mp-category-img-container.*?src=\'(.*?)\'.*?alt=\'(.*?)\'', text)
         hottestList = re.findall(r'mp-hotsale-imgcon.*?src=\'(.*?)\'.*?alt=\'(.*?)\'.*?price-num">(.*?)<', text)
-        recList = re.findall(r'mp-like-img.*?src=\'(.*?)\'.*?alt=\'(.*?)\'.*?mp-comment-num">(.*?)条.*?price-num">.*?<.*?mp-like-address">(.*?)<', text)
+        recList = re.findall(r'mp-like-img.*?src=\'(.*?)\'.*?alt=\'(.*?)\'.*?data-score="(.*?)".*?mp-comment-num">(.*?)条.*?price-num">.*?<.*?mp-like-address">(.*?)<', text)
         weekList = re.findall(r'product-imgcontainer.*?src=\'(.*?)\'.*?alt=\'(.*?)\'.*?product-desc">(.*?)<', text)
         data['city'] = city
         temp = []
@@ -47,8 +47,9 @@ def get_home_data():
                 "id": i + 1,
                 "imgUrl": recList[i][0],
                 "desc": recList[i][1],
-                "commentNum": recList[i][2],
-                "address": recList[i][3]
+                "score": recList[i][2],
+                "commentNum": recList[i][3],
+                "address": recList[i][4]
             })
         data['recList'] = temp
         temp = []
@@ -68,3 +69,4 @@ def get_home_data():
 
 if __name__ == '__main__':
     data = get_home_data()
+    pass
