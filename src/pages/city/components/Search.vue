@@ -1,12 +1,17 @@
 <template>
-  <div class="search">
-    <div class="search-input">
-    <input type="text" placeholder="输入城市/拼音" v-model="kw">
+  <div class='search'>
+    <div class='search-input'>
+      <input type='text' placeholder='输入城市/拼音' v-model='kw'>
+    </div>
+    <div class="search-content" v-show="showResult">
+      <div class="search-item border-bottom" v-for="(item, index) in result" :key="index">{{item.city}}</div>
+      <div class="search-item border-bottom" v-if="hasNoData">没有匹配的城市</div>
     </div>
   </div>
 </template>
 
 <script>
+import { clearTimeout, setTimeout } from 'timers'
 export default {
   name: 'CitySearch',
   props: {
@@ -16,48 +21,87 @@ export default {
   data () {
     return {
       kw: '',
-      timer: null
+      timer: null,
+      result: []
     }
   },
   watch: {
     kw: function (newVal) {
-      // 热门城市搜索业务
-      var result1 = this.hottestCity.filter((item) => {
-        if (item.city.indexOf(newVal) > -1) {
-          return true
+      var result = []
+      if (!newVal) {
+        this.result = result
+        return
+      }
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        for (let i = 0; i < this.alphabetCity.length; i++) {
+          let cities = this.alphabetCity[i]
+          for (let j = 0; j < cities['city'].length; j++) {
+            if (cities['city'][j].indexOf(newVal) > -1) {
+              result.push({
+                city: cities['city'][j],
+                pinyin: cities['pinyin'][j]
+              })
+            }
+            if (cities['pinyin'][j].indexOf(newVal) > -1) {
+              result.push({
+                city: cities['city'][j],
+                pinyin: cities['pinyin'][j]
+              })
+            }
+          }
         }
-        if (item.pinyin.indexOf(newVal) > -1) {
-          return true
-        }
-        return false
-      })
+        this.result = result
+      }, 100)
+    }
+  },
+  computed: {
+    showResult () {
+      return this.kw.length > 0
+    },
+    hasNoData () {
+      return this.result.length === 0
     }
   }
 }
 </script>
 
-<style lang="stylus" scope>
+<style lang='stylus' scope>
 @import '~styles/variables.styl'
 
 .search
   background: $bgColor
   width: 100%
   position: relative
-  height  .68rem
+  height: 0.68rem
   .search-input
     position: absolute
+    left: 0
+    right: 0
+    height: 0.68rem
+    width: 100%
+    box-sizing: border-box
+    padding: 0.1rem 0.8rem
+    background-color: $bgColor
+    color: #666
+    input
+      background: #fff
+      width: 100%
+      text-align: center
+      box-sizing: border-box
+      padding: 0 0.2rem
+  .search-content
+    position absolute
     left 0
     right 0
-    height .68rem
-    width 100%
-    box-sizing border-box
-    padding .10rem .80rem
-    background-color $bgColor
-    color #666
-    input
-      background #fff
-      width 100%
+    top .68rem
+    z-index 1
+    .search-item
+      background rgb(245, 245, 245)
+      height .40rem
+      line-height .40rem
+      font-size .28rem
       text-align center
-      box-sizing border-box
-      padding 0 0.2rem
 </style>
