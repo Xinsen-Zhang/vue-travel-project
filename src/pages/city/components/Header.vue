@@ -6,12 +6,6 @@
       </div>
     </router-link>
     <div class="header-title">城市选择</div>
-    <!-- <div class="header-tabs-region">
-      <ul class="header-tabs">
-        <li class="header-tab header-tab-active">境内</li>
-        <li class="header-tab">境外`港澳台</li>
-      </ul>
-    </div> -->
   </div>
 </template>
 

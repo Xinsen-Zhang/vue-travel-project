@@ -23,6 +23,12 @@ var mutations = {
     try {
       localStorage.setItem('currentCity', city)
     } catch (e) {}
+  },
+  closeResult (state) {
+    state.showResult = false
+  },
+  openResult (state) {
+    state.showResult = true
   }
 }
 

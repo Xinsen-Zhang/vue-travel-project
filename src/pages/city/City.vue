@@ -2,7 +2,8 @@
   <div>
     <city-header></city-header>
     <city-search :alphabetCity="alphabetCity"></city-search>
-    <city-list :alphabet="alphabet" :alphabetCity="alphabetCity" :hottestCity="hottestCity"></city-list>
+    <city-list :alphabet="alphabet" :alphabetCity="alphabetCity" :hottestCity="hottestCity" :scrollY="scrollY" @change="changeHandler"></city-list>
+    <city-alphabet :alphabet="alphabet" @change="changeHandler"></city-alphabet>
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import axios from 'axios'
 import CityHeader from './components/Header'
 import CitySearch from './components/Search'
 import CityList from './components/List'
+import CityAlphabet from './components/Alphabet'
 
 export default {
   name: 'City',
@@ -19,13 +21,15 @@ export default {
     return {
       hottestCity: [],
       alphabet: [],
-      alphabetCity: []
+      alphabetCity: [],
+      scrollY: 0
     }
   },
   components: {
     CityHeader,
     CitySearch,
-    CityList
+    CityList,
+    CityAlphabet
   },
   methods: {
     handleResponse (response) {
@@ -35,6 +39,11 @@ export default {
         this.alphabet = data.alphabet
         this.alphabetCity = data.alphabat_city
       }
+    },
+    changeHandler (alphabet) {
+      var y = document.getElementById('domestic-' + alphabet).offsetTop
+      // this.$emit('scrollTo', y)
+      this.scrollY = y
     }
   },
   mounted () {

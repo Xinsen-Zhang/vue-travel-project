@@ -58,8 +58,12 @@ export default {
         this.result = result
       }, 100)
     },
-    showResult: function () {
-      this.$store.commit('toggleShowResult')
+    showResult: function (newVal) {
+      if (newVal) {
+        this.$store.commit('openResult')
+      } else {
+        this.$store.commit('closeResult')
+      }
     }
   },
   computed: {
@@ -73,6 +77,7 @@ export default {
   methods: {
     changeCity (city) {
       this.$store.commit('changeCity', city)
+      this.$store.commit('closeResult')
       this.$router.push('/')
     },
     clickHandler (event) {
@@ -81,7 +86,7 @@ export default {
     }
   },
   mounted () {
-    this.scroll = new BScroll(this.$refs.searchWrapper, {
+    this.searchScroll = new BScroll(this.$refs.searchWrapper, {
       momentum: true
     })
   }
