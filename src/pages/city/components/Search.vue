@@ -1,14 +1,38 @@
 <template>
   <div class="search">
     <div class="search-input">
-    <input type="text" placeholder="输入城市/拼音">
+    <input type="text" placeholder="输入城市/拼音" v-model="kw">
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CitySearch'
+  name: 'CitySearch',
+  props: {
+    hottestCity: Array,
+    alphabetCity: Array
+  },
+  data () {
+    return {
+      kw: '',
+      timer: null
+    }
+  },
+  watch: {
+    kw: function (newVal) {
+      // 热门城市搜索业务
+      var result1 = this.hottestCity.filter((item) => {
+        if (item.city.indexOf(newVal) > -1) {
+          return true
+        }
+        if (item.pinyin.indexOf(newVal) > -1) {
+          return true
+        }
+        return false
+      })
+    }
+  }
 }
 </script>
 

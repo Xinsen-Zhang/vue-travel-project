@@ -34,6 +34,15 @@ export default {
     alphabet: Array,
     hottestCity: Array,
     alphabetCity: Array
+  },
+  methods: {
+    changeHandler (val) {
+      console.log(val)
+      console.log('vnfjkvd')
+    }
+  },
+  mounted () {
+    this.$on('searchChange', this.changeHandler)
   }
 }
 </script>
