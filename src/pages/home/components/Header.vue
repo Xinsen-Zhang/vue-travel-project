@@ -1,4 +1,5 @@
 <template>
+<!-- TODO: 右侧文字的完整显示 -->
   <div class="header">
       <div class="header-left">
         <div class="iconfont back-icon">&#xe624;</div>
@@ -48,7 +49,8 @@ export default {
       color: #ccc
       padding-left .2rem
     .header-right
-      width: 1.24rem
+      min-width: 1.24rem
+      flex 1
       float: right
       text-align: center
       color #fff

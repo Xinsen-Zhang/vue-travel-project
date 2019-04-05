@@ -4,7 +4,7 @@
       <input type='text' placeholder='输入城市/拼音' v-model='kw'>
     </div>
     <div class="search-content" v-show="showResult">
-      <div class="search-item border-bottom" v-for="(item, index) in result" :key="index">{{item.city}}</div>
+      <div class="search-item border-bottom" v-for="(item, index) in result" :key="index" @click="clickHandler">{{item.city}}</div>
       <div class="search-item border-bottom" v-if="hasNoData">没有匹配的城市</div>
     </div>
   </div>
@@ -55,6 +55,9 @@ export default {
         }
         this.result = result
       }, 100)
+    },
+    showResult: function () {
+      this.$store.commit('toggleShowResult')
     }
   },
   computed: {
@@ -63,6 +66,16 @@ export default {
     },
     hasNoData () {
       return this.result.length === 0
+    }
+  },
+  methods: {
+    changeCity (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
+    },
+    clickHandler (event) {
+      let city = event.target.innerText
+      this.changeCity(city)
     }
   }
 }
@@ -100,8 +113,8 @@ export default {
     z-index 1
     .search-item
       background rgb(245, 245, 245)
-      height .40rem
-      line-height .40rem
+      height .60rem
+      line-height .60rem
       font-size .28rem
       text-align center
 </style>

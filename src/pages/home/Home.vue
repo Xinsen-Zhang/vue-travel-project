@@ -52,7 +52,17 @@ export default {
       this.weekList = data.weekList
     },
     getHomeData () {
-      axios.get('/api1/home?city=杭州').then(this.handleResponse)
+      axios.get(`/api1/home?city=${this.currentCity}`).then(this.handleResponse)
+    }
+  },
+  computed: {
+    currentCity () {
+      return this.$store.state.city
+    }
+  },
+  watch: {
+    currentCity: function (newVal) {
+      this.getHomeData()
     }
   }
 }

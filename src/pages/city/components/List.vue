@@ -1,15 +1,15 @@
 <template>
-  <div class="list">
+  <div class="list" v-show="showList">
     <div class="current-city">
       <h2 class="title ">当前城市</h2>
       <div class="content">
-        <div class="area border-rightbottom">北京</div>
+        <div class="area border-rightbottom">{{currentCity}}</div>
       </div>
       </div>
     <div class="hottest">
       <h2 class="title ">热门城市</h2>
       <div class="content">
-        <div class="area border-rightbottom" v-for="(item, index) in hottestCity" :key="index">{{item.city}}</div>
+        <div class="area border-rightbottom" v-for="(item, index) in hottestCity" :key="index" @click="clickHandler">{{item.city}}</div>
       </div>
     </div>
     <div class="alphabet-list">
@@ -21,7 +21,7 @@
     <div class="alphabet-city" v-for="(item, index) in alphabetCity" :key="index">
       <h2 class="title ">{{item.alphabet}}</h2>
       <div class="content">
-        <div class="area border-rightbottom" v-for="(city, index) in item.city" :key="index">{{city}}</div>
+        <div class="area border-rightbottom" v-for="(city, index) in item.city" :key="index" @click="clickHandler">{{city}}</div>
       </div>
     </div>
   </div>
@@ -36,13 +36,22 @@ export default {
     alphabetCity: Array
   },
   methods: {
-    changeHandler (val) {
-      console.log(val)
-      console.log('vnfjkvd')
+    changeCity (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
+    },
+    clickHandler (event) {
+      let city = event.target.innerText
+      this.changeCity(city)
     }
   },
-  mounted () {
-    this.$on('searchChange', this.changeHandler)
+  computed: {
+    showList () {
+      return !this.$store.state.showResult
+    },
+    currentCity () {
+      return this.$store.state.city
+    }
   }
 }
 </script>
