@@ -31,7 +31,6 @@ export default {
     handleResponse (response) {
       if (response.data && response.data.ret) {
         var data = response.data
-        console.log(data)
         this.hottestCity = data.hottestCity
         this.alphabet = data.alphabet
         this.alphabetCity = data.alphabat_city
