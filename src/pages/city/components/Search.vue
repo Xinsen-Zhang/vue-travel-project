@@ -3,7 +3,7 @@
     <div class='search-input'>
       <input type='text' placeholder='输入城市/拼音' v-model='kw'>
     </div>
-    <div class="search-content" v-show="showResult">
+    <div class="search-content wrapper" v-show="showResult" ref="searchWrapper">
       <div class="search-item border-bottom" v-for="(item, index) in result" :key="index" @click="clickHandler">{{item.city}}</div>
       <div class="search-item border-bottom" v-if="hasNoData">没有匹配的城市</div>
     </div>
@@ -12,6 +12,8 @@
 
 <script>
 import { clearTimeout, setTimeout } from 'timers'
+import BScroll from 'better-scroll'
+
 export default {
   name: 'CitySearch',
   props: {
@@ -77,6 +79,11 @@ export default {
       let city = event.target.innerText
       this.changeCity(city)
     }
+  },
+  mounted () {
+    this.scroll = new BScroll(this.$refs.searchWrapper, {
+      momentum: true
+    })
   }
 }
 </script>

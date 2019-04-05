@@ -1,33 +1,37 @@
 <template>
-  <div class="list" v-show="showList">
-    <div class="current-city">
-      <h2 class="title ">当前城市</h2>
-      <div class="content">
-        <div class="area border-rightbottom">{{currentCity}}</div>
+  <div class="list wrapper" v-show="showList" ref="wrapper">
+    <div class="content">
+      <div class="current-city">
+        <h2 class="title ">当前城市</h2>
+        <div class="content">
+          <div class="area border-rightbottom">{{currentCity}}</div>
+        </div>
+        </div>
+      <div class="hottest">
+        <h2 class="title ">热门城市</h2>
+        <div class="content">
+          <div class="area border-rightbottom" v-for="(item, index) in hottestCity" :key="index" @click="clickHandler">{{item.city}}</div>
+        </div>
       </div>
+      <div class="alphabet-list">
+        <h2 class="title ">字母排序</h2>
+        <div class="content">
+          <div class="area border-rightbottom" v-for="(item, index) in alphabet" :key="index">{{item}}</div>
+        </div>
       </div>
-    <div class="hottest">
-      <h2 class="title ">热门城市</h2>
-      <div class="content">
-        <div class="area border-rightbottom" v-for="(item, index) in hottestCity" :key="index" @click="clickHandler">{{item.city}}</div>
-      </div>
-    </div>
-    <div class="alphabet-list">
-      <h2 class="title ">字母排序</h2>
-      <div class="content">
-        <div class="area border-rightbottom" v-for="(item, index) in alphabet" :key="index">{{item}}</div>
-      </div>
-    </div>
-    <div class="alphabet-city" v-for="(item, index) in alphabetCity" :key="index">
-      <h2 class="title ">{{item.alphabet}}</h2>
-      <div class="content">
-        <div class="area border-rightbottom" v-for="(city, index) in item.city" :key="index" @click="clickHandler">{{city}}</div>
+      <div class="alphabet-city" v-for="(item, index) in alphabetCity" :key="index">
+        <h2 class="title" :id="getId(item.alphabet)">{{item.alphabet}}</h2>
+        <div class="content">
+          <div class="area border-rightbottom" v-for="(city, index) in item.city" :key="index" @click="clickHandler">{{city}}</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
+
 export default {
   name: 'CityList',
   props: {
@@ -43,6 +47,9 @@ export default {
     clickHandler (event) {
       let city = event.target.innerText
       this.changeCity(city)
+    },
+    getId (alphabet) {
+      return 'domestic-' + alphabet
     }
   },
   computed: {
@@ -52,6 +59,11 @@ export default {
     currentCity () {
       return this.$store.state.city
     }
+  },
+  mounted () {
+    this.scroll = new BScroll(this.$refs.wrapper, {
+      momentum: true
+    })
   }
 }
 </script>
