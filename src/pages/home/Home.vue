@@ -52,7 +52,7 @@ export default {
       this.weekList = data.weekList
     },
     getHomeData () {
-      axios.get('/api1/home').then(this.handleResponse)
+      axios.get('/api1/home?city=杭州').then(this.handleResponse)
     }
   }
 }

@@ -2,9 +2,9 @@ import requests
 import re
 import json
 data = {}
-def get_home_data():
+def get_home_data(city= '北京'):
     try:
-        req = requests.get('http://piao.qunar.com/touch')
+        req = requests.get('http://piao.qunar.com/touch/index_{}.html'.format(city))
         text = req.text
         city = re.findall(r'class="mp-nav-city">(.*?)<', text)[0]
         swipeList = re.findall(r'swipe-img.*?src=\'(.*?)\'', text) 
@@ -69,5 +69,5 @@ def get_home_data():
     return data
 
 if __name__ == '__main__':
-    data = get_home_data()
-    pass
+    data = get_home_data('三亚')
+    print(data)

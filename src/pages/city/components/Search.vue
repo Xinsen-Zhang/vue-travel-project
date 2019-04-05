@@ -19,7 +19,7 @@ export default {
   background: $bgColor
   width: 100%
   position: relative
-  height  .88rem
+  height  .68rem
   .search-input
     position: absolute
     left 0

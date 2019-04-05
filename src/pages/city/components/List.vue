@@ -9,50 +9,49 @@
     <div class="hottest">
       <h2 class="title ">热门城市</h2>
       <div class="content">
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-        <div class="area border-rightbottom">北京</div>
-
+        <div class="area border-rightbottom" v-for="(item, index) in hottestCity" :key="index">{{item.city}}</div>
       </div>
-      </div>
+    </div>
     <div class="alphabet-list">
       <h2 class="title ">字母排序</h2>
-      <div class="content"></div>
+      <div class="content">
+        <div class="area border-rightbottom" v-for="(item, index) in alphabet" :key="index">{{item}}</div>
       </div>
-    <div class="alphabet">
-      <h2 class="title ">A</h2>
-      <div class="content"></div>
+    </div>
+    <div class="alphabet-city" v-for="(item, index) in alphabetCity" :key="index">
+      <h2 class="title ">{{item.alphabet}}</h2>
+      <div class="content">
+        <div class="area border-rightbottom" v-for="(city, index) in item.city" :key="index">{{city}}</div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CityList'
+  name: 'CityList',
+  props: {
+    alphabet: Array,
+    hottestCity: Array,
+    alphabetCity: Array
+  }
 }
 </script>
 
 <style lang="stylus" scope>
   @import '~styles/variables.styl'
+  @import '~styles/mixins.styl'
 
   .list
     background rgb(245, 245, 245)
     position absolute
-    top 2.36rem
+    top 1.56rem
     left 0
     right 0
     bottom 0
     .title
-      margin .24rem .30rem
+      padding .24rem .30rem
+      background rgb(245, 245, 245)
     .content
       overflow hidden
       background #fff
@@ -63,4 +62,5 @@ export default {
         height .90rem
         line-height .90rem
         color #212121
+        ellipsis()
 </style>
