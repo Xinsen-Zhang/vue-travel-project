@@ -43,7 +43,6 @@ export default {
   methods: {
     changeCity (city) {
       this.$store.commit('changeCity', city)
-      this.$store.commit('closeResult')
       this.$router.push('/')
     },
     clickHandler (event) {

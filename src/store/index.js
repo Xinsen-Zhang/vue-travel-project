@@ -23,13 +23,13 @@ var mutations = {
     try {
       localStorage.setItem('currentCity', city)
     } catch (e) {}
-  },
-  closeResult (state) {
-    state.showResult = false
-  },
-  openResult (state) {
-    state.showResult = true
   }
+  // closeResult (state) {
+  //   state.showResult = false
+  // },
+  // openResult (state) {
+  //   state.showResult = true
+  // }
 }
 
 export default new Vuex.Store({

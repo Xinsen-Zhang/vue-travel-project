@@ -58,12 +58,8 @@ export default {
         this.result = result
       }, 100)
     },
-    showResult: function (newVal) {
-      if (newVal) {
-        this.$store.commit('openResult')
-      } else {
-        this.$store.commit('closeResult')
-      }
+    showResult: function () {
+      this.$store.commit('toggleShowResult')
     }
   },
   computed: {
@@ -77,7 +73,7 @@ export default {
   methods: {
     changeCity (city) {
       this.$store.commit('changeCity', city)
-      this.$store.commit('closeResult')
+      this.kw = ''
       this.$router.push('/')
     },
     clickHandler (event) {
